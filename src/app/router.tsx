@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { ResourceDetailsPage } from '../features/resources/pages/ResourceDetailsPage'
-import { ResourceListPage } from '../features/resources/pages/ResourceListPage'
-import { ResourceOverviewPage } from '../features/resources/pages/ResourceOverviewPage'
+import { ResourceDetailsPage } from '@features/resources/pages/ResourceDetailsPage'
+import { ResourceListPage } from '@features/resources/pages/ResourceListPage'
+import { ResourceOverviewPage } from '@features/resources/pages/ResourceOverviewPage'
 
 export function AppRouter() {
   return (

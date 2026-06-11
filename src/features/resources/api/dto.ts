@@ -1,4 +1,4 @@
-import type { BasicInfo, ProjectDetails, ResourceStatus } from '../model/resource'
+import type { BasicInfo, ProjectDetails, ResourceStatus } from '@features/resources/model/resource'
 
 export interface PaginatedResponse<T> {
   items: T[];

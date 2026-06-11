@@ -1,5 +1,5 @@
 import { request } from './client';
-import type { Resource } from '../model/resource';
+import type { Resource } from '@features/resources/model/resource';
 import type {
     PaginatedResponse,
     ResourceListParams,
@@ -26,7 +26,7 @@ export const resourcesApi = {
         }
       
         const qs = query.toString();
-        
+
         return request<PaginatedResponse<Resource>>(`/api/resources${qs ? `?${qs}` : ''}`);
       },
 
