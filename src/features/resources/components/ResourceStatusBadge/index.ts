@@ -1,0 +1,1 @@
+export { ResourceStatusBadge } from './ResourceStatusBadge';
