@@ -4,6 +4,9 @@ import type {
     PaginatedResponse,
     ResourceListParams,
     CreateResourceBody,
+    UpdateBasicInfoBody,
+    UpdateProjectDetailsBody,
+    PutResourceBody,
 } from './dto';
 
 
@@ -16,7 +19,7 @@ export const resourceKeys = {
 export const resourcesApi = {
     list(params?: ResourceListParams) {
         const query = new URLSearchParams()
-      
+
         if (params) {
           Object.entries(params).forEach(([key, value]) => {
             if (value !== undefined) {
@@ -24,11 +27,10 @@ export const resourcesApi = {
             }
           });
         }
-      
-        const qs = query.toString();
 
+        const qs = query.toString();
         return request<PaginatedResponse<Resource>>(`/api/resources${qs ? `?${qs}` : ''}`);
-      },
+    },
 
     get(resourceId: number) {
         return request<Resource>(`/api/resources/${resourceId}`);
@@ -44,6 +46,33 @@ export const resourcesApi = {
     delete(resourceId: number) {
         return request<Resource>(`/api/resources/${resourceId}`, {
             method: 'DELETE',
+        });
+    },
+
+    updateBasicInfo(resourceId: number, body: UpdateBasicInfoBody) {
+        return request<Resource>(`/api/resources/${resourceId}/basic-info`, {
+            method: 'PATCH',
+            body: JSON.stringify(body),
+        });
+    },
+
+    updateProjectDetails(resourceId: number, body: UpdateProjectDetailsBody) {
+        return request<Resource>(`/api/resources/${resourceId}/project-details`, {
+            method: 'PATCH',
+            body: JSON.stringify(body),
+        });
+    },
+
+    provision(resourceId: number) {
+        return request<Resource>(`/api/resources/${resourceId}/provisioning`, {
+            method: 'PATCH',
+        });
+    },
+
+    put(resourceId: number, body: PutResourceBody) {
+        return request<Resource>(`/api/resources/${resourceId}`, {
+            method: 'PUT',
+            body: JSON.stringify(body),
         });
     },
 }

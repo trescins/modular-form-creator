@@ -19,18 +19,14 @@ export interface CreateResourceBody {
   resourceName: string;
 }
 
-export interface UpdateBasicInfoBody {
-  basicInfo: Partial<BasicInfo>;
-}
+export type UpdateBasicInfoBody = BasicInfo;
 
-export interface UpdateProjectDetailsBody {
-  projectDetails: Partial<ProjectDetails>;
-}
+export type UpdateProjectDetailsBody = ProjectDetails;
 
 export interface PutResourceBody {
-  name?: string;
-  basicInfo?: BasicInfo;
-  projectDetails?: ProjectDetails;
+  name: string;
+  basicInfo: BasicInfo;
+  projectDetails: ProjectDetails;
 }
 
 export interface ResourceListParams {
