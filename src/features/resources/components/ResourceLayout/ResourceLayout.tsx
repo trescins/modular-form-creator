@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams, Outlet } from 'react-router-dom'
 import { useResource } from '@features/resources/hooks'
 import { Loader } from '@shared/components/Loader'
@@ -9,10 +9,12 @@ export function ResourceLayout() {
   const { resourceId } = useParams<{ resourceId: string }>();
   const id = Number(resourceId);
   const [buffer, setBuffer] = useState<BufferState>({});
+  const [prevId, setPrevId] = useState(id);
 
-  useEffect(() => {
+  if (prevId !== id) {
+    setPrevId(id);
     setBuffer({});
-  }, [id]);
+  }
 
   const { data: resource, isLoading, isError, error } = useResource(id);
 
