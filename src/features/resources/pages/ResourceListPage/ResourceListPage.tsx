@@ -30,6 +30,8 @@ export function ResourceListPage() {
   const createMutation = useCreateResource();
   const deleteMutation = useDeleteResource();
 
+  const items = data?.items ?? [];
+
   const handleCreate = () => {
     const trimmed = resourceName.trim();
 
@@ -42,9 +44,17 @@ export function ResourceListPage() {
       setNameError('Letters, numbers, spaces and hyphens only');
       return;
     }
-    
+
+    const isDuplicate = items.some((r) => r.name.toLowerCase() === trimmed.toLowerCase());
+    if (isDuplicate) {
+      setNameError('A resource with this name already exists');
+      return;
+    }
+
     setNameError('');
-    createMutation.mutate({ resourceName: trimmed });
+    createMutation.mutate({ resourceName: trimmed }, {
+      onError: (err) => setNameError(err.message ?? 'Could not create resource'),
+    });
     setResourceName('');
   }
 
@@ -65,8 +75,6 @@ export function ResourceListPage() {
   if (isLoading) return <Loader />
 
   if (isError) return <ErrorState message={error?.message} />
-
-  const items = data?.items ?? [];
 
   return (
     <PageWrapper>
