@@ -6,5 +6,5 @@ interface ResourceStatusBadgeProps {
 }
 
 export function ResourceStatusBadge({ status }: ResourceStatusBadgeProps) {
-  return <Badge variant={status === 'draft' ? 'neutral' : 'success'}>{status}</Badge>
+  return <Badge variant={status === 'draft' ? 'info' : 'success'}>{status}</Badge>
 }
