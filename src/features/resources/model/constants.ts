@@ -6,3 +6,8 @@ export const PRIORITY_OPTIONS = [
   { value: '', label: 'Select priority' },
   ...PRIORITY_VALUES.map((v) => ({ value: v, label: v.charAt(0).toUpperCase() + v.slice(1) })),
 ]
+
+export const CATEGORY_OPTIONS = [
+  { value: '', label: 'Select category' },
+  ...PROJECT_CATEGORY_VALUES.map((v) => ({ value: v, label: v.charAt(0).toUpperCase() + v.slice(1) })),
+];

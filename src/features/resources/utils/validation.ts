@@ -1,4 +1,5 @@
 export const NAME_REGEX = /^[A-Za-z0-9 -]+$/;
+export const INTEGER_REGEX = /^\d+$/;
 
 export const OWNER_REGEX = /^[A-Za-z ]+$/;
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -29,6 +30,35 @@ export function validateBasicInfo(form: {
 
   if (!form.priority) {
     errors.priority = 'Required';
+  }
+
+  return errors;
+}
+
+export function validateProjectDetails(form: {
+  projectName: string
+  budget: string
+  category: string
+  options: string[]
+}): Record<string, string> {
+  const errors: Record<string, string> = {};
+
+  if (!form.projectName.trim()) {
+    errors.projectName = 'Required';
+  }
+
+  if (!form.budget.trim()) {
+    errors.budget = 'Required';
+  } else if (!INTEGER_REGEX.test(form.budget)) {
+    errors.budget = 'Numbers only';
+  }
+
+  if (!form.category) {
+    errors.category = 'Required';
+  }
+
+  if (form.options.length === 0) {
+    errors.options = 'Select at least one option';
   }
 
   return errors;
