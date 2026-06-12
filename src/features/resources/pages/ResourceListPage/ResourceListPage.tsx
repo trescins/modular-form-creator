@@ -4,7 +4,9 @@ import { Input } from '@design-system/components/Input'
 import { Button } from '@design-system/components/Button'
 import { IconButton } from '@design-system/components/IconButton'
 import { ResourceStatusBadge } from '@features/resources/components/ResourceStatusBadge'
+import { ConfirmDeleteModal } from '@features/resources/components/ConfirmDeleteModal'
 import { useCreateResource, useDeleteResource, useResourcesList } from '@features/resources/hooks'
+import type { Resource } from '@features/resources/model/resource'
 import { Loader } from '@shared/components/Loader'
 import { ErrorState } from '@shared/components/ErrorState'
 import { NAME_REGEX } from '@features/resources/utils/validation'
@@ -24,6 +26,7 @@ import {
 export function ResourceListPage() {
   const [resourceName, setResourceName] = useState('');
   const [nameError, setNameError] = useState('');
+  const [pendingDelete, setPendingDelete] = useState<Resource | null>(null);
   const navigate = useNavigate();
 
   const { data, isLoading, isError, error } = useResourcesList();
@@ -46,6 +49,7 @@ export function ResourceListPage() {
     }
 
     const isDuplicate = items.some((r) => r.name.toLowerCase() === trimmed.toLowerCase());
+    
     if (isDuplicate) {
       setNameError('A resource with this name already exists');
       return;
@@ -58,9 +62,15 @@ export function ResourceListPage() {
     setResourceName('');
   }
 
-  const handleDelete = (e: React.MouseEvent, resourceId: number) => {
+  const handleDeleteClick = (e: React.MouseEvent, resource: Resource) => {
     e.stopPropagation();
-    deleteMutation.mutate(resourceId);
+    setPendingDelete(resource);
+  }
+
+  const handleDeleteConfirm = () => {
+    if (!pendingDelete) return;
+    deleteMutation.mutate(pendingDelete.resourceId);
+    setPendingDelete(null);
   }
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -117,7 +127,7 @@ export function ResourceListPage() {
               <IconButton
                 variant="ghost"
                 size="small"
-                onClick={(e) => handleDelete(e, resource.resourceId)}
+                onClick={(e) => handleDeleteClick(e, resource)}
                 title="Delete resource"
               >
                 🗑
@@ -125,6 +135,14 @@ export function ResourceListPage() {
             </ResourceRow>
           ))}
         </ResourceList>
+      )}
+
+      {pendingDelete && (
+        <ConfirmDeleteModal
+          resourceName={pendingDelete.name}
+          onConfirm={handleDeleteConfirm}
+          onCancel={() => setPendingDelete(null)}
+        />
       )}
     </PageWrapper>
   )
