@@ -1,11 +1,40 @@
 # Modular Form Creator
 
-Frontend for the Resources Management application. Allows creating, tracking and completing resources through a structured module workflow.
+Frontend for a resource management application built as a recruitment task. Implements a module-based form workflow where resources move through a draft/completed lifecycle.
 
-## Requirements
+## Features
 
-- Node.js 18+
-- Docker (for the backend)
+- Create and delete resources from a list view
+- Track module completion progress (Basic Info + Project Details)
+- Provision resources once both modules are complete
+- Edit completed resources via a local buffer — changes are held in frontend state and persisted only on explicit submit
+- Confirmation modal for destructive actions
+- Client-side and server-side validation with inline error display
+
+## Tech stack
+
+- **React 19** with TypeScript
+- **React Router 7** — nested routes with Outlet context for shared resource state
+- **React Query v5** — server state, cache invalidation on mutations
+- **styled-components 6** — design system integration, per-component style files
+- **Vitest + Testing Library** — unit tests
+
+## Project structure
+
+```
+src/
+├── app/              # Router
+├── design-system/    # Provided UI component library (read-only)
+├── shared/           # Cross-feature components (Loader, ErrorState)
+└── features/
+    └── resources/
+        ├── api/       # Fetch client, API functions, DTOs
+        ├── hooks/     # React Query hooks (one per operation)
+        ├── model/     # TypeScript types and domain constants
+        ├── utils/     # Business rules, validation, formatters
+        ├── components/ # Reusable domain components (Layout, ModuleItem, Modal)
+        └── pages/     # Route-level page components
+```
 
 ## Getting started
 
