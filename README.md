@@ -11,6 +11,27 @@ Frontend for a resource management application built as a recruitment task. Impl
 - Confirmation modal for destructive actions
 - Client-side and server-side validation with inline error display
 
+- ## Screenshots
+
+  <img width="1440" height="679" alt="Zrzut ekranu 2026-06-14 o 08 45 47" src="https://github.com/user-attachments/assets/b2285293-133d-4223-b942-5061b2ad805e" />
+
+  <img width="1440" height="685" alt="Zrzut ekranu 2026-06-14 o 08 45 58" src="https://github.com/user-attachments/assets/e224d179-9756-4be0-bb48-87c645c77423" />
+
+  <img width="1440" height="682" alt="Zrzut ekranu 2026-06-14 o 08 46 06" src="https://github.com/user-attachments/assets/0b9c67ba-499b-47c9-8ba3-fb1ffb843327" />
+
+  <img width="1434" height="680" alt="Zrzut ekranu 2026-06-14 o 08 46 14" src="https://github.com/user-attachments/assets/c5baf3a4-3e1d-43d8-a2d6-020ec1152116" />
+
+<img width="1440" height="686" alt="Zrzut ekranu 2026-06-14 o 08 46 22" src="https://github.com/user-attachments/assets/35cd8e69-0915-4417-84fb-8261079a00ed" />
+
+<img width="1440" height="684" alt="Zrzut ekranu 2026-06-14 o 08 46 31" src="https://github.com/user-attachments/assets/aab8e196-c2d3-4b75-9efd-56dd25c003ed" />
+
+<img width="1438" height="685" alt="Zrzut ekranu 2026-06-14 o 08 46 41" src="https://github.com/user-attachments/assets/918ccc0b-ff0d-465f-a6e1-4e784405a99c" />
+
+<img width="1439" height="684" alt="Zrzut ekranu 2026-06-14 o 08 48 05" src="https://github.com/user-attachments/assets/92bf7641-afb2-4ba6-9165-d042768b3a9d" />
+
+<img width="1438" height="681" alt="Zrzut ekranu 2026-06-14 o 08 49 48" src="https://github.com/user-attachments/assets/b17ece79-3379-4bb9-93a0-de4a04e71f4a" />
+
+
 ## Tech stack
 
 - **React 19** with TypeScript
